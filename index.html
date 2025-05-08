@@ -1,27 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Personality Generator</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-<main >
-  <header>
-    <h1>Personality Generator</h1>
-  </header>
-  <section class="centered-element">
-    <div id="generate-area-btn">
-      <button class="button" onclick="generatePersonality()">Generate</button>
-    </div>
-    <p id="result"></p><button class="copyButton button" data-target="result">Copy ID Number</button>
-    <p id="cell-phone"></p><button class="copyButton button" data-target="cell-phone">Copy Cell Number</button>
-    <p id="full-name"></p><button class="copyButton button" data-target="full-name">Copy Full Name</button>
-    <p id="email"></p><button class="copyButton button" data-target="email">Copy Email</button>
-  </section>
-</main>
 
-<script src="script.js"></script>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Personality Generator</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <div class="container">
+    <header>
+      <h1>Personality Generator</h1>
+    </header>
+    <main>
+      <section id="generator-section">
+        <h2>Generate a Random Personality</h2>
+
+        <button class="button" onclick="generatePersonality()">Generate</button>
+        <div class="info-container">
+          <button class="copyButton button" data-target="result">Copy ID Number</button>
+          <p class="info-text" id="result"></p>
+        </div>
+        <div class="info-container">
+          <button class="copyButton button" data-target="cell-phone">Copy Cell Number</button>
+          <p class="info-text" id="cell-phone"></p>
+        </div>
+        <div class="info-container">
+          <button class="copyButton button" data-target="full-name">Copy Full Name</button>
+          <p class="info-text" id="full-name"></p>
+        </div>
+        <div class="info-container">
+          <button class="copyButton button" data-target="email">Copy Email</button>
+          <p class="info-text" id="email"></p>
+        </div>
+      </section>
+    </main>
+    <footer>Developed by <a href="https://github.com/Yosefc" target="_blank">Yosefc</a></footer>
+  </div>
+  <script src="script.js"></script>
 </body>
+
 </html>

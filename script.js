@@ -342,15 +342,40 @@ function generatePersonality() {
   let fullName = getRandomUniqueHebrewName();
   let email = getRandomEmail();
   document.getElementById("cell-phone").textContent = "Generated Cell: " + cellNumber;
-  document.getElementById("result").textContent = "Generated ID: " + idNumber;
+  document.getElementById("id-number").textContent = "Generated ID: " + idNumber;
   document.getElementById("full-name").textContent = "Generated Full Name: " + fullName;
   document.getElementById("email").textContent = "Generated Email: " + email;
+}
+
+function showToast(msg, wasCopySuccessful) {
+  const container = document.getElementById("toast-container");
+  const toast = document.createElement("div");
+
+  if (wasCopySuccessful) {
+    toast.className = "toast toast-success";
+  } else {
+    toast.className = "toast toast-error";
+  }
+
+  toast.textContent = msg;
+  container.appendChild(toast);
+  setTimeout(() => {
+    toast.remove();
+  }, 3000);
 }
 
 // Function to copy content to clipboard
 function copyToClipboard(elementId) {
   // Get the target paragraph element
   const paragraph = document.getElementById(elementId);
+
+  if (!paragraph) {
+    console.error("Invalid element ID");
+    return;
+  }
+
+  // Dynamically generate the copied message based on the element ID
+  const copiedElement = `${paragraph.previousElementSibling?.textContent || elementId} copied!`;
   const regexPattern = /^[^:]*:\s*/;
   // Create a temporary input element to select the text
   const tempInput = document.createElement("input");
@@ -361,8 +386,8 @@ function copyToClipboard(elementId) {
   // Copy the text
   navigator.clipboard
     .writeText(tempInput.value)
-    .then(() => console.log("Content copied to clipboard!"))
-    .catch((err) => console.log(`Failed to copy text due to the following error: ${err}`));
+    .then(() => showToast(copiedElement.replace("Copy ", ""), true))
+    .catch((err) => showToast(`Failed to copy text due to ${err}`, false));
 
   document.body.removeChild(tempInput);
 }

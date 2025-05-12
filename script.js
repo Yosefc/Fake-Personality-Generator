@@ -384,10 +384,14 @@ function copyToClipboard(elementId) {
   tempInput.select();
 
   // Copy the text
-  navigator.clipboard
-    .writeText(tempInput.value)
-    .then(() => showToast(copiedElement.replace("Copy ", ""), true))
-    .catch((err) => showToast(`Failed to copy text due to ${err}`, false));
+  if (tempInput.value === "") {
+    showToast("Nothing to copy.", false);
+  } else {
+    navigator.clipboard
+      .writeText(tempInput.value)
+      .then(() => showToast(copiedElement.replace("Copy ", ""), true))
+      .catch((err) => showToast(`Failed to copy text due to ${err}`, false));
+  }
 
   document.body.removeChild(tempInput);
 }

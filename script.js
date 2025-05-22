@@ -30,7 +30,7 @@ function generateIsraeliCellNumber() {
 }
 
 // Array of 100 Hebrew first names
-let firstNames = [
+const originalFirstNames = [
   "אברהם",
   "בנימין",
   "דוד",
@@ -134,7 +134,7 @@ let firstNames = [
 ];
 
 // Array of 100 Hebrew last names
-let lastNames = [
+const originalLastNames = [
   "כהן",
   "לוי",
   "מזרחי",
@@ -237,11 +237,15 @@ let lastNames = [
   "גרון",
 ];
 
+
+let firstNames = [...originalFirstNames];
+let lastNames = [...originalLastNames];
 // Function to generate random, unique first and last names
 function getRandomUniqueHebrewName() {
   if (firstNames.length === 0 || lastNames.length === 0) {
     console.log("All names have been used. Resetting the lists...");
-    return null; // Or reset the list with original names
+    firstNames = [...originalFirstNames];
+    lastNames = [...originalLastNames];
   }
 
   // Select and remove a random first name
